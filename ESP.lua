@@ -5,12 +5,15 @@ function OnPaint()
 			if  GetIsAlive(i) and not GetIsDormant(i) then
 
 				local playerinfo = GetPlayerInfo(i)
+				local WeaponInfo = GetWeaponInfo(i)
+				local m_iClip1 = GetEntityWeaponProp(i, "DT_BaseCombatWeapon", "m_iClip1")
+				local m_iPrimaryReserveAmmoCount = GetEntityWeaponProp(i, "DT_BaseCombatWeapon", "m_iPrimaryReserveAmmoCount")
 				local x, y, z = GetOrigin(i)
 				local HeadX, HeadY  = WorldToScreen(x, y, z + 72)
 				local LegsX, LegsY  = WorldToScreen(x, y, z - 5)
 				local hp = GetHealth(i)
 
-				if HeadX ~= nil and HeadY ~= nil  and LegsX ~= nil  and LegsY ~= nil and playerinfo ~= nil then
+				if HeadX ~= nil and HeadY ~= nil  and LegsX ~= nil  and LegsY ~= nil and playerinfo ~= nil and WeaponInfo ~= nil  and m_iClip1 ~= nil and m_iPrimaryReserveAmmoCount ~= nil then
 
 					local BoxHeight = LegsY - HeadY
 					local BoxWidth = BoxHeight / 4
@@ -20,10 +23,9 @@ function OnPaint()
 					local BoxBottom = HeadY + BoxHeight
 
 					LoadFont("Tahoma")
-					local textwidth, textheight = GetTextSize("Tahoma", 12, playerinfo.m_szName)
 					local TextTop = HeadY - 14
 					local TextBot = LegsY + 14
-					local TextCenter = HeadX + 32 - textwidth
+					local TextCenter = HeadX 
 
 					--esp
 					DrawRectangle(BoxLeft, BoxTop, BoxWidth + BoxWidth + 1, 1, 255, 255, 255, 255) --up
@@ -45,8 +47,17 @@ function OnPaint()
 					--
 
 					--name
-					DrawText(TextCenter, TextTop, 255, 255, 255, 255, "Tahoma", 12, playerinfo.m_szName)
+					DrawText(TextCenter, TextTop, 255, 255, 255, 255, "Tahoma", 12, playerinfo.m_szName, true, true)
 					--
+
+					--weapon 
+					DrawText(TextCenter, TextBot, 255, 255, 255, 255, "Tahoma", 12, string.gsub(WeaponInfo.m_szWeaponName, "weapon_", ""), true, true)
+
+					if m_iPrimaryReserveAmmoCount > 0 then -- Dont draw if uses weapon with 0 ammo like Knife
+						DrawText(TextCenter, TextBot + 14, 255, 255, 255, 255, "Tahoma", 12, m_iClip1 .. " / " .. m_iPrimaryReserveAmmoCount, true, true)
+					end
+					--
+					 
 				end
 			end
 		end
