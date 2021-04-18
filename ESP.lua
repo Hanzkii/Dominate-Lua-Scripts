@@ -28,10 +28,10 @@ function OnPaint()
 					local TextCenter = HeadX 
 
 					--esp
-					DrawRectangle(BoxLeft, BoxTop, BoxWidth + BoxWidth + 1, 1, 255, 255, 255, 255) --up
-					DrawRectangle(BoxLeft, BoxBottom,BoxWidth + BoxWidth + 1, 1, 255, 255, 255, 255) --down
-					DrawRectangle(BoxLeft, BoxTop, 1, BoxHeight + 2,   255, 255, 255, 255) --left
-					DrawRectangle(BoxRight, BoxTop, 1, BoxHeight + 2,   255, 255, 255, 255) --right
+					DrawRectangle(math.floor(BoxLeft), math.floor(BoxTop), math.floor(BoxWidth + BoxWidth + 1), 1, 255, 255, 255, 255) --up
+					DrawRectangle(math.floor(BoxLeft), math.floor(BoxBottom), math.floor(BoxWidth + BoxWidth + 1), 1, 255, 255, 255, 255) --down
+					DrawRectangle(math.floor(BoxLeft), math.floor(BoxTop), 1, math.floor(BoxHeight + 2),   255, 255, 255, 255) --left
+					DrawRectangle(math.floor(BoxRight), math.floor(BoxTop), 1, math.floor(BoxHeight + 2),   255, 255, 255, 255) --right
 					--
 
 					--hp
@@ -40,21 +40,21 @@ function OnPaint()
 					end
 
 					if hp < 100 then
-						DrawText(BoxLeft - 9, BoxTop - 9 - BoxHeight *  0.01 * hp + BoxHeight, 255, 255, 255, 255, "Tahoma", 10, hp)
+						DrawText(math.floor(BoxLeft - 9), math.floor(BoxTop - 9 - BoxHeight *  0.01 * hp + BoxHeight), 255, 255, 255, 255, "Tahoma", 10, hp)
 					end
 
-					DrawRectangle(BoxLeft - 4, BoxTop - BoxHeight *  0.01 * hp + BoxHeight,  2,  BoxHeight * 0.01 * hp + 2,   (hp + 40 / 60) * 255, (hp  / 100) * 255, 0, 255) --left
+					DrawRectangle(math.floor(BoxLeft - 4), math.floor(BoxTop - BoxHeight *  0.01 * hp + BoxHeight),  2,  math.floor(BoxHeight * 0.01 * hp + 2),   math.floor((hp + 40 / 60) * 255), math.floor((hp  / 100) * 255), 0, 255) --left
 					--
 
 					--name
-					DrawText(TextCenter, TextTop, 255, 255, 255, 255, "Tahoma", 12, playerinfo.m_szName, true, true)
+					DrawText(math.floor(TextCenter), math.floor(TextTop), 255, 255, 255, 255, "Tahoma", 12, playerinfo.m_szName, true, true)
 					--
 
 					--weapon 
-					DrawText(TextCenter, TextBot, 255, 255, 255, 255, "Tahoma", 12, string.gsub(WeaponInfo.m_szWeaponName, "weapon_", ""), true, true)
+					DrawText(math.floor(TextCenter), math.floor(TextBot), 255, 255, 255, 255, "Tahoma", 12, string.gsub(WeaponInfo.m_szWeaponName, "weapon_", ""), true, true)
 
 					if m_iPrimaryReserveAmmoCount > 0 then -- Dont draw if uses weapon with 0 ammo like Knife
-						DrawText(TextCenter, TextBot + 14, 255, 255, 255, 255, "Tahoma", 12, m_iClip1 .. " / " .. m_iPrimaryReserveAmmoCount, true, true)
+						DrawText(math.floor(TextCenter), math.floor(TextBot + 14), 255, 255, 255, 255, "Tahoma", 12, m_iClip1 .. " / " .. m_iPrimaryReserveAmmoCount, true, true)
 					end
 					--
 					 
