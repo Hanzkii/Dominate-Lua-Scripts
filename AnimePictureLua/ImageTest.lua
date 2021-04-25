@@ -1,6 +1,6 @@
 local Girl, Girl2
 
-function OnLoadScript()
+function OnLoadScript() -- you can use any path here
     Girl = LoadImage("C:\\Users\\Public\\Documents\\Dominate.Systems\\Scripts\\Images\\girl.png")
     Girl2 = LoadImage("C:\\Users\\Public\\Documents\\Dominate.Systems\\Scripts\\Images\\girl2.png")
 end
