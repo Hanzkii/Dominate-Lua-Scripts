@@ -12,7 +12,7 @@ function OnPaint()
 
 	if WeaponName == "aug" or WeaponName == "sg556" then
 		if IsScoped then
-			ViewModelFov:SetInt(160);
+			ViewModelFov:SetInt(60);
 		else
 			ViewModelFov:SetInt(oViewModelFov);
 		end
